@@ -1,20 +1,20 @@
 const Timer = {
 
-    time: function(fun) {
+    time: function(fun, params) {
         var startTime = performance.now()
-        fun();
+        fun({...params});
         var endTime = performance.now()
 
         return endTime - startTime;
 
       },
 
-    tripleTime: function(fun) {
+    tripleTime: function(fun, params) {
         let times = [];
         //controllare se in caso fun ordini un array, dalla seconda iterazione non trovi l'array già ordinato
-        times.push(this.time(fun));
-        times.push(this.time(fun));
-        times.push(this.time(fun));
+        times.push(this.time(fun, params));
+        times.push(this.time(fun, params));
+        times.push(this.time(fun, params));
         return times.sort();
     }
 
