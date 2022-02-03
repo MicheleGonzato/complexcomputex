@@ -1,8 +1,10 @@
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
 import SortingAlgorithmsService from './Services/SortingAlgorithmsService';
 import ArrayGeneratorService from './Services/ArrayGeneratorService';
 import Timer from './Services/Timer';
 import './App.css';
+import { Chart } from 'frappe-charts'
+
 
 function App() {
 //  SortingAlgorithmsService.greets('Aldo');
@@ -25,22 +27,44 @@ for (let i = 0; i<iterations.length; i++) {
 
 console.log(' - - - - - FIN - - - - - ')
 
+
+useEffect(() => {
+  console.log('hello')
+  const data = {
+    labels: ["12am-3am", "3am-6pm", "6am-9am", "9am-12am",
+        "12pm-3pm", "3pm-6pm", "6pm-9pm", "9am-12am"
+    ],
+    datasets: [
+        {
+            name: "Some Data", chartType: "bar",
+            values: [25, 40, 30, 35, 8, 52, 17, -4]
+        },
+        {
+            name: "Another Set", chartType: "line",
+            values: [25, 50, -10, 15, 18, 32, 27, 14]
+        }
+    ]
+  }
+
+
+      // eslint-disable-next-line no-unused-vars
+  const chart = new Chart("#chart", {  // or a DOM element,
+    title: "My Awesome Chart",
+    data: data,
+    type: 'axis-mixed', // or 'bar', 'line', 'scatter', 'pie', 'percentage'
+    height: 250,
+    colors: ['#7cd6fd', '#743ee2']
+  })
+
+  console.log('bye')
+
+});
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div id="chart">hel</div>
     </div>
   );
 }
